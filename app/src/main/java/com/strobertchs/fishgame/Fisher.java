@@ -17,6 +17,8 @@ public class Fisher extends AnimatedSprite {
     }
 
     public void draw(Canvas source_canvas){
+        // draw rectangle right now to test if the app is running.
+        // change to drawable later
         source_canvas.drawRect(getPositionX(),getPositionY(),getPositionX()+getWidth(), getPositionY() + getWidth(),paint);
     }
 
