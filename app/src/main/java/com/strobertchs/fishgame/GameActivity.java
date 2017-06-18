@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.content.Context;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -21,10 +22,13 @@ class GameActivity extends SurfaceView implements Runnable{
     int fps;
     long lastFrameTime;
     Thread ourThread = null;
-    Fisher fish;
     Canvas canvas;
     SurfaceHolder ourHolder;
     Paint paint;
+    //set up basic variable
+    Fish fish;
+    Fisher fisher;
+    Trash trash;
     int score;
     int screenWidth;
     int screenHeight;
@@ -32,7 +36,10 @@ class GameActivity extends SurfaceView implements Runnable{
 
     public GameActivity(Context context, int sScreenWidth, int sScreenHeight) {
         super(context);
-        fish = new Fisher(sScreenWidth, sScreenHeight);
+        fisher = new Fisher(sScreenWidth, sScreenHeight);
+        fish = new Fish(sScreenWidth, sScreenHeight);
+        trash = new Trash(sScreenWidth, sScreenHeight);
+
         screenHeight = sScreenHeight;
         screenWidth = sScreenWidth;
         ourHolder = getHolder();
@@ -46,7 +53,7 @@ class GameActivity extends SurfaceView implements Runnable{
         while (playGame) {
             controlFPS();
             drawCourt();
-//            updateCourt();
+            updateCourt();
         }
 
     }
@@ -55,21 +62,22 @@ class GameActivity extends SurfaceView implements Runnable{
 
 
 
-//    public void updateCourt(){
-//        //to control the fisher is only moving inside the screen
-//        if(fish.isMovingRight()){
-//            if (fish.getPositionX() + fish.getWidth() < screenWidth) {
-//                fish.updatePosition();
-//            }
-//        }
-//
-//        if(fish.isMovingLeft()){
-//            if(fish.getPositionX() > 0){
-//                fish.updatePosition();
-//            }
-//        }
-//
-//    }
+
+    public void updateCourt(){
+        //to control the fisher is only moving inside the screen
+        if(fisher.isMovingRight()){
+            if (fish.getPositionX() + fish.getWidth() < screenWidth) {
+                fisher.updatePosition();
+            }
+        }
+
+        if(fisher.isMovingLeft()){
+            if(fish.getPositionX() > 0){
+                fisher.updatePosition();
+            }
+        }
+
+    }
 
     public void controlFPS() {
         long timeThisFrame = (System.currentTimeMillis() - lastFrameTime);
@@ -96,25 +104,49 @@ class GameActivity extends SurfaceView implements Runnable{
             paint.setColor(Color.argb(255, 255, 255, 255));
             paint.setTextSize(45);
 
+            //draw fisher
+            fisher.draw(canvas);
+
+            //draw fish(background use)
             fish.draw(canvas);
-            System.out.println(fish.toString());
+
+            //draw trash
+
+            System.out.println(fisher.toString());
         }
     }
-//
-//    public void pause() {
-//        playGame = false;
-//        try {
-//            ourThread.join();
-//        } catch (InterruptedException e) {
-//        }
-//    }
-//
-//    public void resume() {
-//        playGame = true;
-//        ourThread = new Thread(this);
-//        ourThread.start();
-//    }
-//
 
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
+            case MotionEvent.ACTION_DOWN:
+                if (motionEvent.getX() >= screenWidth / 2) {
+                    fisher.moveRight();
+                } else {
+                    fisher.moveLeft();
+                }
+                break;
+
+            case MotionEvent.ACTION_UP:
+                fisher.stop();
+                break;
+        }
+        return true;
+    }
+
+
+    public void pause() {
+        playGame = false;
+        try {
+            ourThread.join();
+        } catch (InterruptedException e) {
+        }
+    }
+
+    public void resume() {
+        playGame = true;
+        ourThread = new Thread(this);
+        ourThread.start();
+    }
 
 }

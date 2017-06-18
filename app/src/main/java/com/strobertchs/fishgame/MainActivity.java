@@ -22,7 +22,6 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
         display = getWindowManager().getDefaultDisplay();
         size = new Point();
@@ -34,39 +33,39 @@ public class MainActivity extends Activity {
 
     }
 
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        while (true) {
-//            FishGame.pause();
-//            break;
-//        }
-//        finish();
-//    }
-//
-//
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        FishGame.pause();
-//        player.release();
-//    }
-//
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        FishGame.resume();
-//    }
-//
-//
-//    public boolean onKeyDown(int keyCode, KeyEvent event) {
-//        if (keyCode == KeyEvent.KEYCODE_BACK) {
-//            FishGame.pause();
-//            finish();
-//            return true;
-//        }
-//        return false;
-//    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        while (true) {
+            FishGame.pause();
+            break;
+        }
+        finish();
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        FishGame.pause();
+        player.release();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FishGame.resume();
+    }
+
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            FishGame.pause();
+            finish();
+            return true;
+        }
+        return false;
+    }
 
 
 }

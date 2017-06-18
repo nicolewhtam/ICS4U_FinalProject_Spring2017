@@ -17,8 +17,8 @@ public class Trash extends AnimatedSprite {
     int positionX;
 
     public Trash(int screen_width, int screen_height){
-        trashHeight = screen_height/10;
-        trashWidth = screen_width/6;
+        setHeight(screen_height / 12);
+        setWidth(screen_width/ 8);
         //positionX = randomNumber.nextInt(screen_width - trashWidth) + 1;
         setPositionX(screen_width  / 2 );
         //positionY = randomNumber.nextInt(screen_height - trashHeight) + 1;
