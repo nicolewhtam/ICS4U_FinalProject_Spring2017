@@ -29,6 +29,7 @@ class GameActivity extends SurfaceView implements Runnable{
     Fish fish;
     Fisher fisher;
     Trash trash;
+    Drawable background;
     int score;
     int screenWidth;
     int screenHeight;
@@ -37,8 +38,10 @@ class GameActivity extends SurfaceView implements Runnable{
     public GameActivity(Context context, int sScreenWidth, int sScreenHeight) {
         super(context);
         fisher = new Fisher(sScreenWidth, sScreenHeight);
-        fish = new Fish(sScreenWidth, sScreenHeight);
-        trash = new Trash(sScreenWidth, sScreenHeight);
+        fish = new Fish(context, sScreenWidth, sScreenHeight);
+        trash = new Trash(context, sScreenWidth, sScreenHeight);
+        background = getResources().getDrawable(R.drawable.ocean);
+        background.setBounds(0, 0, sScreenWidth, sScreenHeight);
 
         screenHeight = sScreenHeight;
         screenWidth = sScreenWidth;
@@ -135,18 +138,18 @@ class GameActivity extends SurfaceView implements Runnable{
     }
 
 
-    public void pause() {
-        playGame = false;
-        try {
-            ourThread.join();
-        } catch (InterruptedException e) {
-        }
-    }
-
-    public void resume() {
-        playGame = true;
-        ourThread = new Thread(this);
-        ourThread.start();
-    }
-
+//    public void pause() {
+//        playGame = false;
+//        try {
+//            ourThread.join();
+//        } catch (InterruptedException e) {
+//        }
+//    }
+//
+//    public void resume() {
+//        playGame = true;
+//        ourThread = new Thread(this);
+//        ourThread.start();
+//    }
+//
 }
