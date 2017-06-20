@@ -54,6 +54,9 @@ public abstract class AnimatedSprite extends Sprite {
         this.movingLeft = movingLeft;
     }
 
+    public void setMovingUp(boolean movingup){this.movingUp = movingup;}
+
+    public void setMovingDown(boolean movingdown){this.movingDown = movingdown;}
     /**
      * movingUp getter
      * @return true when intended vertical direction is up

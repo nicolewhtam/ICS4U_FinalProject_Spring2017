@@ -29,15 +29,24 @@ public class Trash extends AnimatedSprite {
         setPositionX(screen_width  / 2 );
         //positionY = randomNumber.nextInt(screen_height - trashHeight) + 1;
         setPositionY(screen_height / 2);
-        setUp_amount(10);
+        setUp_amount(20);
+        setDown_amount(10);
 
         bitmap  = BitmapFactory.decodeResource(context.getResources(),R.drawable.cann);
     }
 
     public void updatePosition(){
         if(isMovingUp()){
-            setPositionX(getPositionX() - getUp_amount() );
+            setPositionY(getPositionY() - getUp_amount() );
         }
+        if(isMovingDown()){
+            setPositionY((getPositionY() + getDown_amount()));
+        }
+    }
+
+    public void verticleStop(){
+        setMovingUp(false);
+        setMovingDown(false);
     }
 
     public void draw(Canvas canvas){
