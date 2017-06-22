@@ -6,13 +6,40 @@
     android:layout_height="match_parent"
     tools:context="com.strobertchs.fishgame.MainActivity">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="627dp"
+        android:layout_height="862dp"
+        app:srcCompat="@drawable/ocean"
+        tools:layout_editor_absoluteY="-150dp"
+        tools:layout_editor_absoluteX="-146dp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="94dp"
+        android:layout_height="120dp"
+        app:srcCompat="@drawable/fish1"
+        tools:layout_editor_absoluteX="274dp"
+        tools:layout_editor_absoluteY="443dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="128dp"
+        android:layout_height="87dp"
+        android:onClick="onClick"
+        android:text="Play"
+        tools:layout_editor_absoluteX="128dp"
+        tools:layout_editor_absoluteY="281dp" />
+
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text='"Fish"'
+        android:textColor="@android:color/black"
+        android:textColorHint="@android:color/black"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="163dp"
+        tools:layout_editor_absoluteY="116dp" />
 
 </android.support.constraint.ConstraintLayout>

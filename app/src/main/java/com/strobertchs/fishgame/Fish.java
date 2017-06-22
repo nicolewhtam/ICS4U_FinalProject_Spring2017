@@ -41,13 +41,13 @@ public class Fish extends Sprite {
 
     public void draw(Canvas canvas){
 
-        for( int i = 0; i < fish.size(); i++ ){
-            destRect = new Rect(
-                    getPositionX(),
-                    getPositionY(),
-                    getPositionX() + getWidth(),
-                    getPositionY() + getHeight()
-            );
+            for( int i = 0; i < fish.size(); i++ ){
+                destRect = new Rect(
+                        getPositionX(),
+                        getPositionY(),
+                        getPositionX() + getWidth(),
+                        getPositionY() + getHeight()
+                );
 
             this.setPositionX(this.getPositionX() + 20);
             this.setPositionY(this.getPositionY() + 20);

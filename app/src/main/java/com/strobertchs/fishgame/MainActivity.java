@@ -32,7 +32,6 @@ public class MainActivity extends Activity {
         setContentView(FishGame);
 
     }
-// bug
     @Override
     protected void onStop() {
         super.onStop();

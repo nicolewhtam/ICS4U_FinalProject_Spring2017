@@ -87,13 +87,13 @@ class GameActivity extends SurfaceView implements Runnable{
         }
         //to control the fishing rod is only moving inside the screen
         if(fishingRod.isMovingRight()){
-            if(fisher.getPositionX() + fisher.getWidth() < screenWidth){
+            if(fishingRod.getPositionX() + fishingRod.getWidth() + 20< screenWidth){
                 fishingRod.updatePosition();
             }
         }
 
         if(fishingRod.isMovingLeft()){
-            if(fisher.getPositionX() > 0){
+            if(fishingRod.getPositionX() - 10 > 0){
                 fishingRod.updatePosition();
             }
         }
@@ -131,7 +131,7 @@ class GameActivity extends SurfaceView implements Runnable{
         }
         for(int i = 0; i < 10; i++ ){
             if(trash.getPositionY() <= fisher.getPositionY() + fisher.getHeight() + 20 && trash.isMovingUp()) {
-                score += 1;
+                score += 100;
                 trash.verticleStop();
                 fishingRod.verticleStop();
                 fishingRod.setPositionY(180);
@@ -215,7 +215,7 @@ class GameActivity extends SurfaceView implements Runnable{
             fisher.draw(canvas);
 
             //draw fish(background use)
-            fish.draw(canvas);
+            //fish.draw(canvas);
 
 
             //draw trash
@@ -235,6 +235,7 @@ class GameActivity extends SurfaceView implements Runnable{
                     fishingRod.moveRight();
                 } else if(motionEvent.getX() <= screenWidth/ 2 && motionEvent.getY() <= screenHeight / 2 && hookOut == false){
                     fisher.moveLeft();
+
                     fishingRod.moveLeft();
                 }else if(motionEvent.getY()> screenHeight /2 && hookOut == false){
                     fishingRod.moveDown();
